@@ -18,25 +18,25 @@ export async function scrapePokemonPage(generationInput) {
     const secondPokemonName = $(pokemonTableRows[secondPokemonIndex]).find('td:nth-child(3)').text().trim();
     
     return { firstPokemonName, secondPokemonName };
-  } catch (e) {
-    console.error(e);
+  } catch (error) {
+    console.error('Error in scrapePokemonPage:', error.message);
+    throw error;
   }
 }
 
-
 export async function getPokemonInfo(pokemon) {
   try {
-    const url = 'https://pokeapi.co/api/v2/pokemon/' + pokemon;
-    const pokemonData = await fetch(url);
-    const pokemonDataJson = await pokemonData.json();
+    const url = 'https://pokeapi.co/api/v2/pokemon/' + pokemon; 
+    const pokemonData = await fetch(url);  // Get response object that contains information on pokemon
+    const pokemonDataJson = await pokemonData.json(); // Convert response object into json format
     let allTypes = [];
-    for (const type of pokemonDataJson.types) {
+    for (const type of pokemonDataJson.types) { // Add the pokemons type(s) in the json object to an array
       allTypes.push(type.type.name);
     }
-    return allTypes;
-  } catch(e) {
-    console.error('Error: ' + e);
-    exit(1);
+    return allTypes;  // Returns array of 'pokemon' type(s)
+  } catch(error) {
+    console.error('Error in getPokemonInfo:', error.message);
+    throw error;
   }
 }
 
