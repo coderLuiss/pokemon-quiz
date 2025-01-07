@@ -1,10 +1,10 @@
 {
   "name": "pokemonproject",
   "version": "1.0.0",
-  "main": "webscraping.js",
+  "main": "main.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node main.js"
   },
   "author": "Luis Menjivar",
   "license": "MIT",
